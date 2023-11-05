@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Main from "./components/Main";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./style.css";
+import { useEffect, useState } from "react";
+
+// await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&APPID=${this.apiKey}
 
 function App() {
+  const [appSection, setAppSection] = useState("Main");
+  const [savedLocations, setSavedLocations] = useState(
+    JSON.parse(localStorage.getItem("savedLocations")) || {}
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Main
+        appSection={appSection}
+        setAppSection={setAppSection}
+        savedLocations={savedLocations}
+        setSavedLocations={setSavedLocations}
+      />
+    </>
   );
 }
 
